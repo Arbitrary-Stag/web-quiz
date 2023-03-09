@@ -22,19 +22,74 @@
             <!-- This div houses the Header/Introduction and the Questions -->
             <div class="inner-container"> 
 
+                <!-- --------- -->
+                <!-- PHASE ONE -->
+                <!-- --------- -->
+
                 <!-- Introduction card for quiz -->
                 <header class="introduction">
                     <h1> Welcome to the Quiz </h1>
                     <p> Click the button below to begin! </p>
-                    <button> Start Quiz </button>
+                    <button> Start Quiz! </button>
                 </header>
 
                 <!-- Main Quiz Content -->
                 <main>
 
+                    <!-- --------- -->
+                    <!-- PHASE TWO -->
+                    <!-- --------- -->
+                    
+                    <section class="quiz-questions">
+                        <h1 id="question"> What is the answer to this question? </h1>
+                            <div class="choice-container">
+                                <p class="choice-prefix">A</p>
+                                <p class="choice-text" data-number="1">Choice 1</p>
+                            </div>
+                            <div class="choice-container">
+                                <p class="choice-prefix">B</p>
+                                <p class="choice-text" data-number="2">Choice 2</p>
+                            </div>
+                            <div class="choice-container">
+                                <p class="choice-prefix">C</p>
+                                <p class="choice-text" data-number="3">Choice 3</p>
+                            </div>
+                            <div class="choice-container">
+                                <p class="choice-prefix">D</p>
+                                <p class="choice-text" data-number="4">Choice 4</p>
+                            </div>
+                    </section>    
+
+                    <!-- ----------- -->
+                    <!-- PHASE THREE -->
+                    <!-- ----------- -->
+                    
+                    <section class="quiz-finished-screen"> 
+                        <h2>Quiz Finished!</h2>
+                        <!--This will be generated in the JavaScript-->
+                        <p>Your Score: 00</p>
+                        <label for="">Enter your initials:</label> 
+                        <input type="text">
+                        <button>Submit</button>
+                    </section>
+
+                    <!-- ---------- -->
+                    <!-- PHASE FOUR -->
+                    <!-- ---------- -->
+                    
+                    <section class="high-scores-screen">
+                        <h2>High Scores</h2>
+                        <ol>
+                            <!--This will all be generated in the JavaScript-->
+                            <li>WW - 20</li>
+                        </ol>
+                        <button>Try again!</button>
+                        <button>Clear High Scores</button>
+                    </section>
                 </main>
 
             </div>
         </div>
+        <script src="./assets/js/web-quiz.js"></script>
     </body>
 </html>
