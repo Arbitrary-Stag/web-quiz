@@ -40,7 +40,7 @@
     button {
         border: 1px solid var(--accent2);
         background-color: var(--accent1);
-        color: var(--buttonColor);
+        color: var(--accent4);
         font-size: 1.3em;
         text-align: center;
         text-decoration: none;
@@ -111,6 +111,7 @@
 
     .quiz-questions {
         text-align: left;
+        width: 100%;
         /* display: none; */
     }
 
@@ -138,6 +139,7 @@
 
     .choice-text {
         padding: 15px;
+        width: 100%;
     }
 /* --------------- */
 /* FINISHED SCREEN */
