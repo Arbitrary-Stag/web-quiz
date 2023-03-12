@@ -1,11 +1,28 @@
+const quizQuestions = document.getElementById("quiz-questions");
+const quizFinished = document.getElementById("quiz-finished-screen");
 const question = document.getElementById("question");
 const choices = Array.from(document.getElementsByClassName("choice-text"));
+const rightAnswer = document.getElementById("commentCorrect");
+const wrongAnswer = document.getElementById("commentIncorrect");
+const questionCounterText = document.getElementById("questionCounter");
+const introduction = document.getElementById("introduction");
+const startButton = document.getElementById("startQuiz");
+const highScoresButton = document.getElementById("high-scores-button");
+const highScores = document.getElementById("high-scores-screen");
+const tryAgain = document.getElementById("tryAgain");
+const playAgain = document.getElementById("playAgain");
+const timer = document.getElementById("timer");
+const outOfTime = document.getElementById("outOfTime");
+const finalScore = document.getElementById("finalScore");
+
 const MAX_QUESTIONS = 5;
 
+let beginQuiz = false;
 let currentQuestion = {};
 let acceptingAnswers = false;
 let questionCounter = 0;
 let availableQuestions = [];
+let secondsLeft = 46;
 
 let questions = [
     {
@@ -50,19 +67,48 @@ let questions = [
     },
 ]
 
+function setTime() {
+    var timerInterval = setInterval(function() {
+      secondsLeft--;
+      timer.innerText = "Time left: " + secondsLeft;
+      timer.setAttribute("style", "display: block;");
+  
+      if(secondsLeft === 0) {
+        clearInterval(timerInterval);
+        quizQuestions.setAttribute("style", "display: none;");
+        quizFinished.setAttribute("style", "display: block;");
+        outOfTime.innerText = "Oops... out of time.";
+        finalScore.innerText = "Your score: 0";
+      }
+
+      if(availableQuestions.length === 0 || questionCounter >= MAX_QUESTIONS) {
+        clearInterval(timerInterval);
+      }
+    }, 1000);
+};
+
+
 startGame = () => {
+    setTime ();
     questionCounter = 0;
     availableQuestions = [...questions];
-    getNewQuestion ();
+    highScoresButton.setAttribute("style", "display: none;");
+    getNewQuestion();
 };
 
 getNewQuestion = () => {
-
-    if(availableQuestions.length === 0 || questionCounter >= MAX_QUESTIONS) 
-        // go to the end page //
-       
-
+    // go to the end page //
+    if(availableQuestions.length === 0 || questionCounter >= MAX_QUESTIONS) {
+        quizQuestions.setAttribute("style", "display: none;");
+        quizFinished.setAttribute("style", "display: block;");
+        timer.setAttribute("style", "display: none;");
+        finalScore.innerText = "Your score: " + secondsLeft + "!";
+        highScoresButton.setAttribute("style", "display: block;");
+    }
+    
     questionCounter++;
+    questionCounterText.innerText = "Question " + questionCounter + "/" + MAX_QUESTIONS;
+
     const questionIndex = Math.floor(Math.random() * availableQuestions.length);
     currentQuestion = availableQuestions[questionIndex];
     question.innerText = currentQuestion.question;
@@ -84,8 +130,63 @@ choices.forEach(choice => {
         const selectedChoice = e.target;
         const selectedAnswer = selectedChoice.dataset['number'];
 
-        getNewQuestion();
+        let classToApply = 'incorrect';
+            if (selectedAnswer == currentQuestion.answer) {
+                classToApply = 'correct';
+            };
+
+        selectedChoice.parentElement.classList.add(classToApply);
+            if (selectedAnswer == currentQuestion.answer) {
+                rightAnswer.setAttribute("style", "display: block;");
+            } else {
+                wrongAnswer.setAttribute("style", "display: block;");
+            }
+
+        if (selectedAnswer == currentQuestion.answer) {
+            secondsLeft +=5;
+        } else {
+            secondsLeft -=5;
+        }
+
+        setTimeout( () => {
+            selectedChoice.parentElement.classList.remove(classToApply);
+            rightAnswer.setAttribute("style", "display: none;");
+            wrongAnswer.setAttribute("style", "display: none;");
+            getNewQuestion();
+        }, 1000);
+        
     })
 })
 
-startGame();
+startButton.addEventListener("click", e => {
+    introduction.setAttribute("style", "display: none;");
+    quizQuestions.setAttribute("style", "display: block;");
+    startGame();
+})
+
+highScoresButton.addEventListener("click", e => {
+    introduction.setAttribute("style", "display: none;");
+    quizQuestions.setAttribute("style", "display: none;");
+    quizFinished.setAttribute("style", "display: none;");
+    highScores.setAttribute("style", "display: block;");
+    timer.setAttribute("style", "display: none;");
+    clearInterval(timerInterval);
+    secondsLeft = 46;
+    
+})
+
+playAgain.addEventListener("click", e => {
+    quizFinished.setAttribute("style", "display: none;");
+    introduction.setAttribute("style", "display: block;");
+    timer.setAttribute("style", "display: none;");
+    secondsLeft = 46;
+    finalScore.innerText = "";
+})
+
+tryAgain.addEventListener("click", e => {
+    highScores.setAttribute("style", "display: none;");
+    introduction.setAttribute("style", "display: block;");
+    timer.setAttribute("style", "display: none;");
+    secondsLeft = 46;
+    finalScore.innerText = "";
+})

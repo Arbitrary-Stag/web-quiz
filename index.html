@@ -15,8 +15,8 @@
 
             <!-- This div houses the Timer and High Scores button -->
             <div class="top-bar"> 
-                <button>High Scores</button>
-                <p>Timer 00:00</p>
+                <button id="high-scores-button">High Scores</button>
+                <p class = "timer" id="timer"></p>
             </div>
 
             <!-- This div houses the Header/Introduction and the Questions -->
@@ -27,10 +27,10 @@
                 <!-- --------- -->
 
                 <!-- Introduction card for quiz -->
-                <header class="introduction">
-                    <h1> Welcome to the Quiz </h1>
+                <header id="introduction" class="introduction">
+                    <h1> Demon Slayer Web Quiz </h1>
                     <p> Click the button below to begin! </p>
-                    <button> Start Quiz! </button>
+                    <button id="startQuiz"> Start Quiz! </button>
                 </header>
 
                 <!-- Main Quiz Content -->
@@ -41,6 +41,11 @@
                     <!-- --------- -->
                     
                     <section id="quiz-questions" class="quiz-questions">
+                        <div id="hud">
+                            <div id="hud-item">
+                                <h1 class="hud-main-text" id="questionCounter"></h1>
+                            </div>
+                        </div>
                         <h1 id="question"> What is the answer to this question? </h1>
                             <div class="choice-container">
                                 <p class="choice-prefix">A</p>
@@ -58,6 +63,8 @@
                                 <p class="choice-prefix">D</p>
                                 <p class="choice-text" data-number="4">Choice 4</p>
                             </div>
+                        <p id="commentCorrect" class="commentCorrect"> Correct!</p>  
+                        <p id="commentIncorrect" class="commentIncorrect"> Incorrect...</p>  
                     </section>    
 
                     <!-- ----------- -->
@@ -65,26 +72,25 @@
                     <!-- ----------- -->
                     
                     <section id="quiz-finished-screen" class="quiz-finished-screen"> 
-                        <h2>Quiz Finished!</h2>
+                        <h2 id="outOfTime">Quiz Finished!</h2>
                         <!--This will be generated in the JavaScript-->
-                        <p>Your Score: 00</p>
+                        <p id="finalScore"></p>
                         <label for="">Enter your initials:</label> 
                         <input type="text">
-                        <button>Submit</button>
+                        <button id="sumbitScore">Submit</button>
+                        <button id="playAgain">Try again?</button>
                     </section>
 
                     <!-- ---------- -->
                     <!-- PHASE FOUR -->
                     <!-- ---------- -->
                     
-                    <section class="high-scores-screen">
+                    <section id="high-scores-screen" class="high-scores-screen">
                         <h2>High Scores</h2>
-                        <ol>
                             <!--This will all be generated in the JavaScript-->
                             <li>WW - 20</li>
-                        </ol>
-                        <button>Try again!</button>
-                        <button>Clear High Scores</button>
+                        <button id="tryAgain">Play again?</button>
+                        <button id="clearScores">Clear High Scores</button>
                     </section>
                 </main>
 
