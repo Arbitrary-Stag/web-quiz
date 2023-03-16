@@ -9,56 +9,76 @@
         --accent3: #acbfbc;
         --accent4: #FFFFFF;
         --bgColor: #c9d4d4;
+        font-size: 62.5%;
     }
 
     * {
         font-family: Arial, Helvetica, sans-serif;
-       
-        /* FOR DEBUGGING */
-        /* border: solid red 1px; */
     }
 
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
+    h1 {
+        font-size: 5.4rem;
         color: var(--headerColor);
-        margin-bottom: 2vh;
+        margin-bottom: 3rem;
+        line-height: 1.2;
+    }
+
+    h2 {
+        font-size: 4.2rem;
+        color: var(--accent2);
+        font-weight: 700;
+        margin-bottom: 1rem;
+        line-height: 1.2;
+    }
+
+    h3 {
+        font-size: 3rem;
+        color: var(--accent2);
+        margin-bottom: 1rem;
+        line-height: 1.2;
+    }
+
+    h4 {
+        font-size: 1.8rem ;
+        color: var(--accent2);
+        margin-bottom: 1rem;
+        line-height: 1.2;
     }
 
     body {
         background-color: var(--bgColor);
         overflow: hidden;
-    }
-
-    p {
-        font-size: 1.3em;
+        min-width: 64rem;
     }
 
     button {
-        border: 1px solid var(--accent2);
+        border: .1rem solid var(--accent2);
         background-color: var(--accent1);
         color: var(--accent4);
-        font-size: 1.3em;
+        font-size: 2rem;
         text-align: center;
         text-decoration: none;
+        width: 18rem;
     }
 
     button:hover {
         cursor: pointer;
-        box-shadow: 0 5px 5px 0 var(--accent3);
-        transform: translateY(-1px);
+        box-shadow: 0 0.5rem 0.5rem 0 var(--accent3);
+        transform: translateY(-.1rem);
         transition: ease-in 150ms;
     }
 
+    button[disabled]:hover {
+        cursor: not-allowed;
+        box-shadow: none;
+        transform: none;
+    }
 /* --------------- */
 /* OUTER CONTAINER */
 /* --------------- */
 
     .outer-container {
-        padding: 10px;
+        padding: 1rem;
         height: 100vh;
         display: flex;
         flex-direction: column;
@@ -84,13 +104,13 @@
 
     
     .timer {
-        border: 1px solid var(--accent2);
+        border: .1rem solid var(--accent2);
         background-color: var(--accent1);
         color: var(--accent4);
-        font-size: 1.3em;
+        font-size: 2.5rem;
         text-align: center;
         text-decoration: none;
-        padding: 0 5px;
+        padding: 0 0.5rem;
     }
 
 /* --------------- */
@@ -99,8 +119,8 @@
 
     .inner-container {
         height: 100%;
-        width: 50%;
-        margin: 140px auto 0;
+        max-width: 65%;
+        margin: 20vh auto;
         display: flex;
         flex-direction: column;
         text-align: center;
@@ -112,8 +132,8 @@
 
     .introduction {
         background-color: var(--accent4);
-        border: 2px solid var(--headerColor);
-        padding: 30px 45px 30px 45px;
+        border: .2rem solid var(--headerColor);
+        padding: 3rem 4.5rem 3rem 4.5rem;
     }
 
     .introduction h1 {
@@ -138,34 +158,32 @@
 
     .quiz-questions {
         text-align: left;
-        width: 100%;
         display: none;
     }
 
     .choice-container {
         display: flex;
         margin-bottom: 5px;
-        width: 100%;
-        font-size: 18px;
-        border: 1px solid var(--headerColor);
+        font-size: 1.8rem;
+        border: .1rem solid var(--headerColor);
         background-color: var(--accent4);
     }
 
     .choice-container:hover {
         cursor: pointer;
-        box-shadow: 0 5px 5px 0 var(--accent3);
-        transform: translateY(-1px);
+        box-shadow: 0 .5rem .5rem 0 var(--accent3);
+        transform: translateY(-.1rem);
         transition: ease-in 150ms;
     }
 
     .choice-prefix {
-        padding: 15px 25px;
+        padding: 1.5rem 2.5rem;
         background-color: var(--accent1);
         color: var(--accent4);
     }
 
     .choice-text {
-        padding: 15px;
+        padding: 1.5rem;
         width: 100%;
     }
 
@@ -191,23 +209,73 @@
 /* FINISHED SCREEN */
 /* --------------- */
 
+    .input button {
+        margin-bottom: 1.5rem;
+        width: 20rem;
+    }
+
+    form {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    input {
+        margin-bottom: 1.5rem;
+        width: 20rem;
+        font-size: 1.8rem;
+        padding: .8rem;
+        border: none;
+        box-shadow: 0 .1rem 1.4rem 0 var(--accent3);
+    }
+
     .quiz-finished-screen {
         background-color: var(--accent4);
-        border: 2px solid var(--headerColor);
-        padding: 30px 45px 30px 45px;
-        margin-top: 10vh;
+        border: .2rem solid var(--headerColor);
+        padding: 3rem 4.5rem 3rem 4.5rem;
         display: none;
+    }
+
+    #finalScore {
+        margin-bottom: 2rem;
     }
 
 /* ------------------ */
 /* HIGH SCORES SCREEN */
 /* ------------------ */
+    .highScores {
+        list-style: none;
+        padding-left: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .high-score {
+        font-size: 3rem;
+        color: var(--accent2);
+        margin-bottom: .5rem;
+    }
+
+    .high-score:hover {
+        cursor: default;
+        transform: scale(1.025);
+    }
 
     .high-scores-screen {
-        margin-bottom: 10vh;
+        margin: 0 auto;
+        background-color: var(--accent4);
+        border: .2rem solid var(--headerColor);
+        padding: 3rem 4.5rem 3rem 4.5rem;
+        width: 100%;
         display: none;
     }
 
+    .high-scores-screen h1 {
+        text-decoration: underline;
+    }
+
     .high-scores-screen button {
-        margin-top: 5vh;
+        margin-top: 2.5rem;
     }

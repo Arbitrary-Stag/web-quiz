@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="./assets/css/reset.css">
         <link rel="stylesheet" href="./assets/css/style.css">
-        <title>Web Quiz</title>
+        <title>Demon Slayer Web Quiz</title>
     </head>
 
     <body>
@@ -19,7 +19,7 @@
                 <p class = "timer" id="timer"></p>
             </div>
 
-            <!-- This div houses the Header/Introduction and the Questions -->
+            <!-- This container limits the total width of the displayed elements and centers them on the screen-->
             <div class="inner-container"> 
 
                 <!-- --------- -->
@@ -29,7 +29,7 @@
                 <!-- Introduction card for quiz -->
                 <header id="introduction" class="introduction">
                     <h1> Demon Slayer Web Quiz </h1>
-                    <p> Click the button below to begin! </p>
+                    <h3> Click the button below to begin! </h3>
                     <button id="startQuiz"> Start Quiz! </button>
                 </header>
 
@@ -41,12 +41,14 @@
                     <!-- --------- -->
                     
                     <section id="quiz-questions" class="quiz-questions">
+                        <!-- The "hud" displays a question counter that is generated in JS-->
                         <div id="hud">
                             <div id="hud-item">
-                                <h1 class="hud-main-text" id="questionCounter"></h1>
+                                <h4 class="hud-main-text" id="questionCounter"></h4>
                             </div>
                         </div>
-                        <h1 id="question"> What is the answer to this question? </h1>
+                        <!--The questions and answers below are randomly generated in JS-->
+                        <h3 id="question"> What is the answer to this question? </h3>
                             <div class="choice-container">
                                 <p class="choice-prefix">A</p>
                                 <p class="choice-text" data-number="1">Choice 1</p>
@@ -63,8 +65,9 @@
                                 <p class="choice-prefix">D</p>
                                 <p class="choice-text" data-number="4">Choice 4</p>
                             </div>
-                        <p id="commentCorrect" class="commentCorrect"> Correct!</p>  
-                        <p id="commentIncorrect" class="commentIncorrect"> Incorrect...</p>  
+                        <!-- These comments will be made visible when a correct/incorrect answer is selected-->    
+                        <h4 id="commentCorrect" class="commentCorrect"> Correct! +5s</h4>  
+                        <h4 id="commentIncorrect" class="commentIncorrect"> Incorrect... -5s</h4>  
                     </section>    
 
                     <!-- ----------- -->
@@ -72,13 +75,27 @@
                     <!-- ----------- -->
                     
                     <section id="quiz-finished-screen" class="quiz-finished-screen"> 
+                        <!--The text in the header below changes depending on whether the user finishes with time left-->
                         <h2 id="outOfTime">Quiz Finished!</h2>
-                        <!--This will be generated in the JavaScript-->
-                        <p id="finalScore"></p>
-                        <label for="">Enter your initials:</label> 
-                        <input type="text">
-                        <button id="sumbitScore">Submit</button>
-                        <button id="playAgain">Try again?</button>
+                        <!--The text content of "finalScore" is generated in JS-->
+                        <h2 id="finalScore"></h2>
+                        <form class="input">
+                            <input
+                            type="text"
+                            name="username"
+                            id="username"
+                            placeholder="username"
+                            />
+                            <!--The "Save" button below is automatically disabled and requires text input to work. See JS-->
+                            <button 
+                            type="submit" 
+                            id="submitScore" 
+                            disabled
+                            >
+                             Save
+                            </button>
+                            <button id="playAgain">Try again?</button>
+                        </form>
                     </section>
 
                     <!-- ---------- -->
@@ -86,9 +103,9 @@
                     <!-- ---------- -->
                     
                     <section id="high-scores-screen" class="high-scores-screen">
-                        <h2>High Scores</h2>
-                            <!--This will all be generated in the JavaScript-->
-                            <li>WW - 20</li>
+                        <h1>High Scores</h1>
+                            <!--The top 5 high scores are stored locally and then generated as <li> items in JS-->
+                        <ul id="highScores" class="highScores"></ul>    
                         <button id="tryAgain">Play again?</button>
                         <button id="clearScores">Clear High Scores</button>
                     </section>
